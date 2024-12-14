@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { PoppinsVariable } from '@/lib/fonts';
 import './globals.css';
@@ -14,7 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${PoppinsVariable} antialiased`}>{children}</body>
+      <ClerkProvider
+        appearance={{
+          variables: { colorPrimary: '#4171EA' },
+        }}
+      >
+        <body className={`${PoppinsVariable} antialiased`}>{children}</body>
+      </ClerkProvider>
     </html>
   );
 }
