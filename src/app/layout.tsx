@@ -1,6 +1,8 @@
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
+import NextTopLoader from 'nextjs-toploader';
 import { PoppinsVariable } from '@/lib/fonts';
+import ClientProvider from '@/shared/components/layout/client-provider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -20,7 +22,10 @@ export default function RootLayout({
           variables: { colorPrimary: '#4171EA' },
         }}
       >
-        <body className={`${PoppinsVariable} antialiased`}>{children}</body>
+        <body className={`${PoppinsVariable} suppressHydrationWarning antialiased`}>
+          <NextTopLoader showSpinner={false} />
+          <ClientProvider>{children}</ClientProvider>
+        </body>
       </ClerkProvider>
     </html>
   );
